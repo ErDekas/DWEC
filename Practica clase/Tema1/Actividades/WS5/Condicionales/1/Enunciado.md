@@ -1,0 +1,1 @@
+Crea un script que determine si un número introducido por el usuario es par.

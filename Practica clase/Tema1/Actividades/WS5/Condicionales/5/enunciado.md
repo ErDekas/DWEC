@@ -1,0 +1,1 @@
+Crea un script que pregunte al usuario por su nombre, y conteste "Bienvenido" o "Bienvenida" según si el nombre introducido es de hombre o mujer(Realizalo solo para los nombre de Pablo, Ana, Eduardo y Clara)

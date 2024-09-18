@@ -1,0 +1,1 @@
+Crea un script que reciba la edad de un usuario, y su localidad de nacimiento y muestre en pantalla 'Enhorabuena' a los usuarios de más de 25 años de Madrid

@@ -1,0 +1,12 @@
+let vairable1 = parseInt(prompt("Dame el valor de la variable 1: "));
+let variable2 = parseInt(prompt("Dame el valor de la variable 2: "));
+document.write("El valor de la variable 1 es: " + vairable1);
+document.write("El valor de la variable 2 es: " + variable2);
+let suma = vairable1 + variable2;
+let resta = vairable1 - variable2;
+let multiplicacion = vairable1 * variable2;
+let division = vairable1 / variable2;
+document.write("La suma es: " + suma);
+document.write("La resta es: " + resta);
+document.write("La multiplicacion es: " + multiplicacion);
+document.write("La division es: " + division);

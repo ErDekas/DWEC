@@ -1,0 +1,1 @@
+Crea un script que pida al usuario 10 números, y muestre su suma en pantalla

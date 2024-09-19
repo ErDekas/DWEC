@@ -1,0 +1,1 @@
+Crea un script que imprima en el documento HTML todas las palabras introducidas por el usuario. El script debe terminar cuando el usuario introduzca la palabra "SALIR"

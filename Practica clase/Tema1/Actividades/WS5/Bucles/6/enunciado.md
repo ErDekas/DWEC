@@ -1,0 +1,1 @@
+Crea un script que pida al usuario un número, y muestre en pantalla su tabla de multiplicar.

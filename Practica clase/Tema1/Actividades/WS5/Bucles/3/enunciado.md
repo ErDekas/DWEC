@@ -1,0 +1,1 @@
+Crea un script que pregunte constantemente números al usuario hasta que el usuario introduzca el número 0

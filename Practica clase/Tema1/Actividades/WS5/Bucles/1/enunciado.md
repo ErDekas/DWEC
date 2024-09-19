@@ -1,0 +1,1 @@
+Crea un script que muestre en nla página web todos los númeors desde el uno hasta el 10, cada uno de ellos sepraado por una línea (<hr>)

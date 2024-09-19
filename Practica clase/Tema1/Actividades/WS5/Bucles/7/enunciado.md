@@ -1,0 +1,1 @@
+Realiza un pequeño adivinador, de manera que primero le pida al usuario un número, y después el usuario (aunque se entienda que sea otro) deberá adivinarlo. El programa dé pequeñas pistas al usuario que adivina (indicando si el número buscado es más pequeño o más mayor que el introducido)

@@ -2,4 +2,4 @@ let palabra = prompt("Introduce una palabra");
 do{
     document.write(palabra + "<br>");
     palabra = prompt("Introduce una palabra");
-}while(palabra != "SALIR");
+}while(palabra.toUpperCase() != "SALIR");

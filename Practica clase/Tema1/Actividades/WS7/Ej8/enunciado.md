@@ -1,0 +1,1 @@
+Write a function called squareAndSum that takes in any number of arguments, squares them, then sums all of the squares.

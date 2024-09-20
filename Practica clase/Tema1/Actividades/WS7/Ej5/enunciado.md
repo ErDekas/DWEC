@@ -1,0 +1,1 @@
+Write a function called sumEveryOther that takes in any amount of arguments, and returns the sum of every other argument.

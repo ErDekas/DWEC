@@ -1,0 +1,1 @@
+Write a function that can take in any number or aguments, and returns the sum of all of the arguments.

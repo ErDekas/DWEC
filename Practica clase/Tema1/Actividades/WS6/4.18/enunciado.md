@@ -1,0 +1,1 @@
+Hacer un programa que pida por teclado cuatro valores: el número de columnas y filas de una tabla y, la altura y anchura (en pixels) de sus celdas. Una vez tecleados estos valores, el programa pintará en la página web una tabla HTML del nº de filas por el nº de columnas tecleadas.

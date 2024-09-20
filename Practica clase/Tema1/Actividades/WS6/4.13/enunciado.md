@@ -1,0 +1,1 @@
+Adpata el ejercicio 4.11 utilizando el bucle while en vez de un bucle for.

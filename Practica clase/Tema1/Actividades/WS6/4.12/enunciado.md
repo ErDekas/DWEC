@@ -1,0 +1,1 @@
+Modifica el ejercicio anterior para que las columnas impares tengan un fondo negro y las pares fondo blanco.

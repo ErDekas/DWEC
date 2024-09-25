@@ -13,5 +13,5 @@ const fecha187Menos24Horas = new Date(fecha187);
 fecha187Menos24Horas.setHours(fecha187.getHours() - 24);
 document.write('<br>Fecha de hoy en 187 días menos 24 horas'+ fecha187Menos24Horas.toLocaleString());
 const fechaResto = fecha85 - fecha187;
-const diasDiferencia = Math.ceil(fechaResto / (1000 * 60 * 60 * 24));
-document.write('<br>Diferencia en días entre '+fecha85+' y '+fecha187 +' '+ fecha187.toLocaleString());
+const diasDiferencia = Math.floor(fechaResto / (1000 * 60 * 60 * 24));
+document.write('<br>Diferencia en días entre '+fecha85.toLocaleString()+' y '+fecha187.toLocaleString() +' es de: '+ diasDiferencia);

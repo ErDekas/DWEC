@@ -1,0 +1,1 @@
+Crea un script que recoja la nota de dos exámenes y dos trabajos y determine si la media es superior a 5 para aprobar la asignatura(75% exámenes y 25% trabajos) y 4.5 en todos ellos.

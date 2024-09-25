@@ -1,1 +1,0 @@
-Crea un script que pregunte la edad, y determine si debes estar en el jardín de infancia(menores de 5 años), en primaria (entre 6 y 11), en la ESO (entre 12 y 16), en Bachillerato o Ciclos (entre 17 y 21) o en la Universidad (más de 21)

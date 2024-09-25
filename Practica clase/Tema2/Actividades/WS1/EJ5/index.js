@@ -1,10 +1,14 @@
+const formatearNumero = (numero) => {
+    return (numero < 10 ? '0' : '') + numero;
+};
+
 const actualizarReloj = () => {
     const ahora = new Date();
-    const horas = String(ahora.getHours()).padStart(2, '0');
-    const minutos = String(ahora.getMinutes()).padStart(2, '0');
-    const segundos = String(ahora.getSeconds()).padStart(2, '0');
+    const horas = formatearNumero(ahora.getHours());
+    const minutos = formatearNumero(ahora.getMinutes());
+    const segundos = formatearNumero(ahora.getSeconds());
 
-    document.getElementById('reloj').textContent = `${horas}:${minutos}:${segundos}`;
+    document.body.innerHTML = `<h1>${horas}:${minutos}:${segundos}</h1>`;
     setTimeout(actualizarReloj, 1000);
 };
 

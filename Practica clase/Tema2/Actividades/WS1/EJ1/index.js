@@ -1,0 +1,13 @@
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1; 
+const day = now.getDate();
+const hour = now.getHours();
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+document.write('Año: '+year);
+document.write('Mes: '+month);
+document.write('Día: '+day);
+document.write('Hora: '+hour);
+document.write('Minutos: '+ minutes);
+document.write('Segundos: '+seconds);

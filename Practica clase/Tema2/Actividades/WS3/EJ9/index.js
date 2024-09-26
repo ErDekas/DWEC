@@ -11,7 +11,7 @@ function formatearPalabra(palabra) {
     }
 
     // Última línea
-    console.log(palabra[longitud - 1] + ' ' + palabra.slice(0, longitud - 1).split('').join(' '));
+    console.log(palabra[longitud - 1] + ' ' + palabra.slice(0, longitud - 1).split('').reverse().join(' '));
 }
 
 const entrada = prompt("Ingrese una palabra:");

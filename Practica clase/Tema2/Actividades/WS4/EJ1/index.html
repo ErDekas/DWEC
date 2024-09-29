@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Navegador</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Información del Navegador</h1>
+<table id="browser-info">
+    <thead>
+        <tr>
+            <th>Propiedad</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    // Información del navegador
+    const browserInfo = {
+        "Nombre del Navegador": navigator.appName,
+        "Versión del Navegador": navigator.appVersion,
+        "Usuario Agente": navigator.userAgent,
+        "Plataforma": navigator.platform,
+        "Lenguaje": navigator.language,
+        "Cookies Habilitadas": navigator.cookieEnabled,
+        "Resolución de Pantalla": `${window.screen.width} x ${window.screen.height}`,
+        "Tamaño de Vista": `${window.innerWidth} x ${window.innerHeight}`,
+        "URL Actual": window.location.href,
+        "Historial de Navegación": window.history.length
+    };
+
+    // Llenar la tabla con la información
+    const tbody = document.getElementById('browser-info').getElementsByTagName('tbody')[0];
+
+    for (const [key, value] of Object.entries(browserInfo)) {
+        const row = tbody.insertRow();
+        const cellKey = row.insertCell(0);
+        const cellValue = row.insertCell(1);
+        cellKey.textContent = key;
+        cellValue.textContent = value;
+    }
+</script>
+
+</body>
+</html>

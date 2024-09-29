@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Página HTML</title>
+    <script>
+        function mostrarNumeroImágenes() {
+            const imágenes = document.getElementsByTagName('img');
+            alert('Número de imágenes en el documento: ' + imágenes.length);
+        }
+
+        function mostrarIdPrimeraImagen() {
+            const imágenes = document.getElementsByTagName('img');
+            if (imágenes.length > 0) {
+                alert('ID de la primera imagen: ' + imágenes[0].id);
+            } else {
+                alert('No hay imágenes en el documento.');
+            }
+        }
+
+        function mostrarNumeroEnlaces() {
+            const enlaces = document.getElementsByTagName('a');
+            alert('Número de enlaces en el documento: ' + enlaces.length);
+        }
+
+        function cambiarTitulo() {
+            document.title = 'Título Cambiado';
+            alert('El título del documento ha sido cambiado.');
+        }
+    </script>
+</head>
+<body>
+    <h1>Bienvenido a la Página de Ejemplo</h1>
+
+    <h2>Imágenes</h2>
+    <img id="imagen1" src="https://via.placeholder.com/150" alt="Imagen de ejemplo 1">
+    <img id="imagen2" src="https://via.placeholder.com/150" alt="Imagen de ejemplo 2">
+    
+    <h2>Enlaces</h2>
+    <a href="#" onclick="mostrarNumeroImágenes()">Mostrar número de imágenes</a><br>
+    <a href="#" onclick="mostrarIdPrimeraImagen()">Mostrar ID de la primera imagen</a><br>
+    <a href="#" onclick="mostrarNumeroEnlaces()">Mostrar número de enlaces</a><br>
+    <a href="#" onclick="cambiarTitulo()">Cambiar título del documento</a><br>
+
+    <h2>Anclas de ejemplo</h2>
+    <a href="#section1">Ir a Sección 1</a><br>
+    <a href="#section2">Ir a Sección 2</a><br>
+
+    <h3 id="section1">Sección 1</h3>
+    <p>Contenido de la sección 1.</p>
+
+    <h3 id="section2">Sección 2</h3>
+    <p>Contenido de la sección 2.</p>
+</body>
+</html>

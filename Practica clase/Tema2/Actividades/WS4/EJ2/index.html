@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Pantalla</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Información de la Pantalla</h1>
+<table id="screen-info">
+    <thead>
+        <tr>
+            <th>Propiedad</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    // Información de la pantalla
+    const screenInfo = {
+        "Ancho de Pantalla": window.screen.width,
+        "Altura de Pantalla": window.screen.height,
+        "Ancho de la Ventana": window.innerWidth,
+        "Altura de la Ventana": window.innerHeight,
+        "Resolución de Color": window.screen.colorDepth,
+        "Resolución de Color (Profundidad)": window.screen.pixelDepth,
+        "Orientación": screen.orientation ? screen.orientation.type : "No soportado",
+        "Disponibilidad de Pantalla Completa": document.fullscreenEnabled ? "Sí" : "No"
+    };
+
+    // Llenar la tabla con la información
+    const tbody = document.getElementById('screen-info').getElementsByTagName('tbody')[0];
+
+    for (const [key, value] of Object.entries(screenInfo)) {
+        const row = tbody.insertRow();
+        const cellKey = row.insertCell(0);
+        const cellValue = row.insertCell(1);
+        cellKey.textContent = key;
+        cellValue.textContent = value;
+    }
+</script>
+
+</body>
+</html>

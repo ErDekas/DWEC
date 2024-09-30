@@ -4,9 +4,9 @@ function formatearPalabra(palabra) {
     // Primera línea
     console.log(palabra.split('').join(' '));
 
-    // Líneas intermedias
+    // Linea intermedia
     for (let i = 1; i < longitud - 1; i++) {
-        let fila = palabra[i] + ' '.repeat((longitud - 2) * 2 + 1) + palabra[(i + 1) % longitud];
+        let fila = palabra[i] + ' '.repeat((longitud - 2) * 2 + 1) + palabra[longitud - 1 - i];
         console.log(fila);
     }
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Dado - Simulación 6000</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulación de 6000 Tiradas de un Dado</h1>
+    <button id="simulateButton">Simular 6000 Tiradas</button>
+    <div id="simulationResult"></div>
+
+    <script>
+        // Función para simular el lanzamiento del dado
+        function lanzamiento() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        // Simular 6000 lanzamientos
+        document.getElementById('simulateButton').addEventListener('click', () => {
+            const ocurrencias = [0, 0, 0, 0, 0, 0];
+
+            for (let i = 0; i < 6000; i++) {
+                const resultado = lanzamiento();
+                ocurrencias[resultado - 1]++;
+            }
+
+            // Mostrar los resultados de la simulación
+            const resultadosTexto = ocurrencias.map((count, index) => 
+                `Número ${index + 1}: ${count} veces`).join('<br>');
+
+            document.getElementById('simulationResult').innerHTML = resultadosTexto;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+function potencia(base, exponente) {
+    // Caso base: cualquier número elevado a 0 es 1
+    if (exponente === 0) {
+        return 1;
+    }
+    // Caso recursivo: base multiplicado por la potencia de (base, exponente - 1)
+    return base * potencia(base, exponente - 1);
+}
+
+// Ejemplo de uso:
+console.log(potencia(2, 3)); // 8
+</script>
+<body>
+    
+</body>
+</html>

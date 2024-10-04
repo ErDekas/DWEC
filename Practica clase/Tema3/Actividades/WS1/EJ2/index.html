@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Dado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador de Dado de 6 Caras</h1>
+    <button id="rollButton">Lanzar Dado</button>
+    <div id="result"></div>
+
+    <script>
+        // Función para simular el lanzamiento del dado
+        function lanzamiento() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        // Lanzar el dado al hacer clic en el botón
+        document.getElementById('rollButton').addEventListener('click', () => {
+            const resultado = lanzamiento();
+            document.getElementById('result').innerText = `Resultado: ${resultado}`;
+        });
+    </script>
+</body>
+</html>

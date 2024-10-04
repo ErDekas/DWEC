@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Factoriales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Factorial de los Números del 1 al 10</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Factorial</th>
+            </tr>
+        </thead>
+        <tbody id="factorialTableBody"></tbody>
+    </table>
+
+    <script>
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+
+        const tableBody = document.getElementById('factorialTableBody');
+
+        for (let i = 1; i <= 10; i++) {
+            const row = document.createElement('tr');
+            const cell1 = document.createElement('td');
+            const cell2 = document.createElement('td');
+
+            cell1.innerText = i;
+            cell2.innerText = factorial(i);
+
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            tableBody.appendChild(row);
+        }
+    </script>
+</body>
+</html>

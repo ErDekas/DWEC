@@ -1,0 +1,1 @@
+const stringLength = str => console.log(str.length);

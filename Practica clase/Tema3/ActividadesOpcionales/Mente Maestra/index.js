@@ -1,10 +1,29 @@
-const colores = ['🔴', '🔵', '🟢', '🟡', '🟣', '🟠', '🟤'];
+/**
+ * Arreglo que contiene los colores válidos para el juego.
+ * @type {string[]}
+ */
+const colores = ['R', 'A', 'V', 'Y', 'M', 'N', 'B'];
 
+/**
+ * Genera un código secreto aleatorio de 4 colores seleccionados de la lista de colores válidos.
+ * @returns {string[]} Un arreglo de 4 colores que forman el código secreto.
+ */
 function generarCodigoSecreto() {
     const coloresBarajados = colores.sort(() => 0.5 - Math.random());
     return coloresBarajados.slice(0, 4);
 }
 
+/**
+ * Verifica un intento del jugador contra el código secreto.
+ * Cuenta las bolas negras (correctas y en la posición correcta)
+ * y las bolas blancas (correctas pero en la posición incorrecta).
+ *
+ * @param {string[]} codigoSecreto - El código secreto que debe ser adivinado.
+ * @param {string[]} intento - La combinación introducida por el jugador.
+ * @returns {{ bolasBlancas: number, bolasNegras: number, bolas: string[] }} 
+ *          Un objeto que contiene la cantidad de bolas blancas, bolas negras 
+ *          y una representación visual de estas.
+ */
 function verificarIntento(codigoSecreto, intento) {
     let bolasNegras = 0;
     let bolasBlancas = 0;
@@ -22,30 +41,45 @@ function verificarIntento(codigoSecreto, intento) {
 
     // Contar bolas blancas
     intentoCopia.forEach(color => {
-        const indice = codigoSecretoCopia.indexOf(color);
-        if (indice !== -1) {
-            bolasBlancas++;
-            codigoSecretoCopia[indice] = null; // Marcar como contado
+        if (color !== null) { // Solo contar si no fue una bola negra
+            const indice = codigoSecretoCopia.indexOf(color);
+            if (indice !== -1) {
+                bolasBlancas++;
+                codigoSecretoCopia[indice] = null; // Marcar como contado
+            }
         }
     });
 
-    return { bolasBlancas, bolasNegras };
+    // Crear representación de las bolas
+    const bolas = [];
+    for (let i = 0; i < bolasNegras; i++) {
+        bolas.push('⚫️');
+    }
+    for (let j = 0; j < bolasBlancas; j++) {
+        bolas.push('⚪️');
+    }
+
+    return { bolasBlancas, bolasNegras, bolas }; // Devolver también las bolas
 }
 
+/**
+ * Inicia el juego "Mente Maestra".
+ * El jugador tiene un máximo de 10 intentos para adivinar el código secreto.
+ */
 function MenteMaestra() {
     const codigoSecreto = generarCodigoSecreto();
     const maximoIntentos = 10;
     let intentos = [];
 
     console.log('¡Bienvenido a Mente Maestra!');
-    console.log('Colores válidos: 🔴 🟡 🟢 🔵 🟣 🟠 🟤');
+    console.log('Colores válidos: R Y V A M N B');
     console.log(`Tienes ${maximoIntentos} intentos para adivinar el código secreto.`);
 
     for (let contadorIntentos = 0; contadorIntentos < maximoIntentos; contadorIntentos++) {
-        let intento = prompt(`Intento ${contadorIntentos + 1} - Ingresa tu combinación (ejemplo: 🔴🔵🟢🟡):`);
+        let intento = prompt(`Intento ${contadorIntentos + 1} - Ingresa tu combinación (ejemplo: RAVY):`);
 
         // Validar intento
-        if (!/^[🔴🟡🟢🔵🟣🟠🟤]{4}$/.test(intento)) {
+        if (!/^[RYVAMNB]{4}$/.test(intento)) {
             console.log('Combinación inválida. Asegúrate de usar exactamente 4 colores válidos.');
             contadorIntentos--;
             continue;
@@ -55,11 +89,12 @@ function MenteMaestra() {
         intento = intento.split('');
         intentos.push(intento);
 
-        const { bolasBlancas, bolasNegras } = verificarIntento(codigoSecreto, intento);
+        const { bolasBlancas, bolasNegras, bolas } = verificarIntento(codigoSecreto, intento);
 
         // Mostrar el intento y la pista
-        console.log(`${intento.join('')} | ${'⚫️'.repeat(bolasNegras)}${'⚪️'.repeat(bolasBlancas)}`);
-
+        const resultado = intento.join('') + ' | ' + bolas.join('');
+        console.log(resultado);
+        
         // Verificar si ha ganado
         if (bolasNegras === 4) {
             console.log('¡Felicidades, has ganado! El código era: ' + codigoSecreto.join(''));
@@ -83,4 +118,5 @@ function MenteMaestra() {
     }
 }
 
+// Inicia el juego
 MenteMaestra();

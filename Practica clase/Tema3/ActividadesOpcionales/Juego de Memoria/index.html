@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de la Memoria</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 5px;
+            justify-content: center;
+        }
+        .card {
+            width: 80px;
+            height: 80px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .hidden {
+            background-color: #ccc;
+        }
+        p{
+            text-align: center;
+        }
+        .button-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Juego de la Memoria</h1>
+<div id="grid" class="grid"></div>
+<p id="message"></p>
+<div class="button-container">
+    <button id="restart">Volver a Jugar</button>
+</div>
+<script src="index.js"></script>
+
+</body>
+</html>

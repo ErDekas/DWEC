@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+#puzzle {
+    display: grid;
+    margin: 20px auto;
+}
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    background-color: #f0f0f0;
+    font-size: 24px;
+    cursor: pointer;
+}
+.empty {
+    background-color: #fff;
+}
+#controls {
+    margin-top: 20px;
+}

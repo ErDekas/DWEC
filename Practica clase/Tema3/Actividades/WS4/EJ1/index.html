@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Numérico</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<h1>Puzzle Numérico</h1>
+<div id="controls">
+    <label for="size">Tamaño del tablero (N x N):</label>
+    <input type="number" id="size" value="3" min="2" max="10">
+    <button onclick="initPuzzle()">Iniciar</button>
+</div>
+<div id="puzzle"></div>
+<div id="info">
+    <p>Movimientos: <span id="moves">0</span></p>
+    <p>Tiempo: <span id="timer">0</span> segundos</p>
+</div>
+<script src="index.js"></script>
+</body>
+</html>

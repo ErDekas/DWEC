@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4 en Línea</title>
-    <style>
-        table { border-collapse: collapse; }
-        td { width: 50px; height: 50px; text-align: center; font-size: 24px; }
-        .empty { background-color: #f0f0f0; }
-    </style>
-</head>
+    <link rel="stylesheet" href="style.css">
 <body>
     <h1>4 en Línea</h1>
+    <div id="playerNames">Nombres: Jugador 1 vs Jugador 2</div>
     <table id="board"></table>
     <p id="message"></p>
+    <div id="controls">
+        <button id="restart">Reiniciar Juego</button>
+        <button id="setNames">Cambiar Nombres</button>
+    </div>
+    <h2>Historial de Partidas</h2>
+    <div id="history"></div>
     <script src="index.js"></script>
 </body>
 </html>

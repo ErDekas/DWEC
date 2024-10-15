@@ -2,6 +2,8 @@ const rows = 6;
 const cols = 7;
 const board = Array.from({ length: rows }, () => Array(cols).fill("⚪️"));
 let currentPlayer = "🟢";
+let playerNames = ["Jugador 1", "Jugador 2"];
+let history = [];
 
 function createBoard() {
   const table = document.getElementById("board");
@@ -23,7 +25,10 @@ function dropPiece(col) {
     if (board[row][col] === "⚪️") {
       board[row][col] = currentPlayer;
       if (checkWin(row, col)) {
-        document.getElementById("message").innerText = `${currentPlayer} gana!`;
+        const winner = currentPlayer === "🟢" ? playerNames[0] : playerNames[1];
+        document.getElementById("message").innerText = `${winner} gana!`;
+        history.push({ winner, loser: playerNames[1 - (currentPlayer === "🟢" ? 0 : 1)] });
+        updateHistory();
       } else {
         currentPlayer = currentPlayer === "🟢" ? "🔴" : "🟢";
       }
@@ -35,7 +40,6 @@ function dropPiece(col) {
 }
 
 function checkWin(row, col) {
-  // Comprobar horizontal, vertical y diagonal
   return (
     checkDirection(row, col, 0, 1) || // Horizontal
     checkDirection(row, col, 1, 0) || // Vertical
@@ -80,11 +84,35 @@ function checkDirection(row, col, rowInc, colInc) {
   return count >= 4;
 }
 
-document.addEventListener("click", (e) => {
+function startNewGame() {
+  board.forEach((row) => row.fill("⚪️"));
+  currentPlayer = "🟢";
+  createBoard();
+  document.getElementById("message").innerText = "";
+}
+
+function updateHistory() {
+  const historyElement = document.getElementById("history");
+  historyElement.innerHTML = history
+    .map((match) => `${match.winner} ganó contra ${match.loser}`)
+    .join("<br>");
+}
+
+document.getElementById("restart").addEventListener("click", startNewGame);
+document.getElementById("setNames").addEventListener("click", () => {
+  const name1 = prompt("Nombre del Jugador 1:", playerNames[0]);
+  const name2 = prompt("Nombre del Jugador 2:", playerNames[1]);
+  playerNames = [name1 || playerNames[0], name2 || playerNames[1]];
+  document.getElementById("playerNames").innerText = `Nombres: ${playerNames.join(" vs ")}`;
+});
+
+// Solo responde a clics en las celdas del tablero
+document.getElementById("board").addEventListener("click", (e) => {
   const col = Array.from(e.target.parentNode.children).indexOf(e.target);
-  if (col >= 0) {
+  if (col >= 0 && e.target.tagName === "TD") {
     dropPiece(col);
   }
 });
 
+// Inicializa el tablero vacío al cargar el juego
 createBoard();

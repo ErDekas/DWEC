@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #444;
+}
+h1 {
+    color: #cdcbcb;
+}
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Usa fracciones para un mejor ajuste */
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    margin: 20px auto;
+    border: 3px solid #333; /* Borde del tablero */
+    width: 320px; /* Establece un ancho fijo para el tablero */
+    height: 320px; /* Establece una altura fija para el tablero */
+    background-color: #f0f0f0; /* Fondo del tablero */
+    border-radius: 10px;
+}
+
+.casilla {
+    background-color: #ccc; /* Color gris para las casillas */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    font-size: 2em;
+    cursor: pointer;
+    border: 1px solid #888; /* Borde de las casillas */
+    border-radius: 5px;
+}
+
+.casilla:hover {
+    background-color: #bbb; /* Color más oscuro al pasar el ratón */
+}
+
+.fin-juego {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #cdcbcb;
+}
+button {
+    display: none; /* Se oculta inicialmente */
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #333;
+    color: #cdcbcb;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    /* Añadido para centrar el botón */
+    margin-left: auto; /* Centrado horizontal */
+    margin-right: auto; /* Centrado horizontal */
+    width: fit-content; /* Ajusta el ancho al contenido */
+    border-radius: 5px; /* Bordes redondeados (opcional) */
+    transition: background-color 0.3s; /* Transición para el color de fondo */
+}
+
+button:hover {
+    background-color: #555; /* Color más claro al pasar el ratón */
+}

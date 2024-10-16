@@ -5,6 +5,7 @@ body {
 #puzzle {
     display: grid;
     margin: 20px auto;
+    justify-content: center;
 }
 .tile {
     display: flex;

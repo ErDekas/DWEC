@@ -7,7 +7,6 @@ let timer;
 let seconds = 0;
 const timeLimit = 180; // 3 minutos
 
-
 function initBoard() {
     board = Array(size).fill(null).map(() => Array(size).fill(0));
     revealed = Array(size).fill(null).map(() => Array(size).fill(false));
@@ -53,6 +52,11 @@ function drawBoard() {
             cell.dataset.row = i;
             cell.dataset.col = j;
             cell.onclick = () => handleCellClick(i, j);
+            cell.oncontextmenu = (e) => {
+                e.preventDefault(); // Evita el menú contextual del navegador
+                markPossibleMine(i, j);
+            };
+            // No mostrar contenido de la celda al inicio
             boardElement.appendChild(cell);
         }
     }
@@ -70,12 +74,21 @@ function handleCellClick(row, col) {
         endGame(false);
     } else {
         cell.classList.add('revealed');
-        cell.innerHTML = board[row][col] > 0 ? board[row][col] : '';
         if (board[row][col] === 0) {
+            cell.style.backgroundColor = 'lightgray'; // Pintar de gris las casillas en blanco
             revealAdjacent(row, col);
+        } else {
+            cell.innerHTML = board[row][col] > 0 ? board[row][col] : '';
         }
         checkWin();
     }
+}
+
+function markPossibleMine(row, col) {
+    if (gameOver || revealed[row][col]) return;
+    const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+    cell.classList.toggle('marked'); // Cambia el estado de marcado
+    cell.innerHTML = cell.classList.contains('marked') ? '🚩' : ''; // Cambia el icono
 }
 
 function revealAdjacent(row, col) {
@@ -129,7 +142,6 @@ function startTimer() {
         }
     }, 1000);
 }
-
 
 // Iniciar el juego
 window.onload = () => {

@@ -54,6 +54,16 @@ function moveTile(index) {
     moves++;
     document.getElementById("moves").textContent = moves;
     renderPuzzle();
+    checkWin(); // Verifica si se ha ganado después de cada movimiento
+  }
+}
+
+function checkWin() {
+  // Comprueba si todos los números están en orden ascendente, con 0 al final
+  const isSolved = puzzle.slice(0, -1).every((val, i) => val === i + 1) && puzzle[puzzle.length - 1] === 0;
+  if (isSolved) {
+    clearInterval(interval);
+    alert(`¡Felicidades! Has ganado en ${moves} movimientos y ${timer} segundos.`);
   }
 }
 

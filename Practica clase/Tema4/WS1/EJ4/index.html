@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujo en Tabla</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let isCtrlPressed = false;
+        let isShiftPressed = false;
+
+        function getTableSize() {
+            let size;
+            do {
+                size = parseInt(prompt("Ingrese el tamaño del tablero (n x n):", "5"), 10);
+            } while (isNaN(size) || size <= 0); // Validar entrada
+            return size;
+        }
+
+        window.onload = function() {
+            const size = getTableSize(); // Obtener tamaño de la tabla
+            const table = document.createElement('table');
+            for (let i = 0; i < size; i++) { // filas
+                const row = document.createElement('tr');
+                for (let j = 0; j < size; j++) { // columnas
+                    const cell = document.createElement('td');
+                    cell.addEventListener('mousemove', function(event) {
+                        if (event.buttons === 1) { // Si el botón del ratón está presionado
+                            if (isCtrlPressed) {
+                                cell.style.backgroundColor = 'red';
+                            } else if (isShiftPressed) {
+                                cell.style.backgroundColor = 'blue';
+                            }
+                        }
+                    });
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            document.body.appendChild(table);
+        };
+
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = true;
+            } else if (event.key === 'Shift') {
+                isShiftPressed = true;
+            }
+        });
+
+        window.addEventListener('keyup', function(event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = false;
+            } else if (event.key === 'Shift') {
+                isShiftPressed = false;
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

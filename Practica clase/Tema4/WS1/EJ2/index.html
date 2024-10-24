@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posición del Ratón</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+        #position {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const positionDisplay = document.getElementById('position');
+
+            document.addEventListener('mousemove', function(event) {
+                const x = event.clientX;
+                const y = event.clientY;
+                positionDisplay.textContent = `Posición del ratón: X: ${x}, Y: ${y}`;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="position">Posición del ratón: X: 0, Y: 0</div>
+</body>
+</html>

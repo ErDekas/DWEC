@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrastrar Múltiples Imágenes</title>
+    <style>
+        .draggable {
+            width: 100px; /* Ajusta el tamaño de las imágenes */
+            cursor: pointer;
+            position: absolute; /* Para permitir el movimiento libre */
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const images = document.querySelectorAll('.draggable');
+
+            images.forEach(img => {
+                let isDragging = false;
+                let offsetX, offsetY;
+
+                img.addEventListener('mousedown', function(event) {
+                    isDragging = true;
+                    offsetX = event.clientX - img.getBoundingClientRect().left;
+                    offsetY = event.clientY - img.getBoundingClientRect().top;
+                });
+
+                document.addEventListener('mousemove', function(event) {
+                    if (isDragging) {
+                        img.style.left = (event.clientX - offsetX) + 'px';
+                        img.style.top = (event.clientY - offsetY) + 'px';
+                    }
+                });
+
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                });
+            });
+        };
+    </script>
+</head>
+<body>
+    <img class="draggable" src="https://via.placeholder.com/100" alt="Imagen 1" style="left: 50px; top: 50px;">
+    <img class="draggable" src="https://via.placeholder.com/100/ff0000" alt="Imagen 2" style="left: 200px; top: 50px;">
+    <img class="draggable" src="https://via.placeholder.com/100/00ff00" alt="Imagen 3" style="left: 350px; top: 50px;">
+    <img class="draggable" src="https://via.placeholder.com/100/0000ff" alt="Imagen 4" style="left: 500px; top: 50px;">
+</body>
+</html>

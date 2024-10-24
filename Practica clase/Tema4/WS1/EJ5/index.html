@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas con Tamaño Personalizado</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            width: 50px; /* Ajustar tamaño de las celdas */
+            height: 50px; /* Ajustar tamaño de las celdas */
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        let isCtrlPressed = false;
+        let isShiftPressed = false;
+        let table;
+
+        function createTable(size) {
+            table = document.createElement('table');
+            for (let i = 0; i < size; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < size; j++) {
+                    const cell = document.createElement('td');
+                    cell.addEventListener('mousemove', function(event) {
+                        if (event.buttons === 1) {
+                            if (isCtrlPressed) {
+                                cell.style.backgroundColor = 'red';
+                            } else if (isShiftPressed) {
+                                cell.style.backgroundColor = 'blue';
+                            }
+                        }
+                    });
+                    cell.addEventListener('contextmenu', function(event) {
+                        event.preventDefault();
+                        cell.style.backgroundColor = '';
+                    });
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            document.body.appendChild(table);
+        }
+
+        function getTableSize() {
+            let size;
+            do {
+                size = parseInt(prompt("Ingrese el tamaño del tablero (n x n):", "5"), 10);
+            } while (isNaN(size) || size <= 0); // Validar entrada
+            return size;
+        }
+
+        window.onload = function() {
+            const initialSize = getTableSize(); // Obtener tamaño inicial
+            createTable(initialSize); // Crear la tabla al cargar
+
+            // Botón para borrar todo el canvas
+            const clearButton = document.createElement('button');
+            clearButton.textContent = 'Borrar todo';
+            clearButton.addEventListener('click', function() {
+                if (table) {
+                    document.body.removeChild(table); // Elimina la tabla completa
+                    table = null; // Reiniciar referencia a la tabla
+                }
+            });
+            document.body.appendChild(clearButton);
+
+            // Botón para restaurar el tablero
+            const restoreButton = document.createElement('button');
+            restoreButton.textContent = 'Restaurar tablero';
+            restoreButton.addEventListener('click', function() {
+                if (table) {
+                    document.body.removeChild(table); // Elimina la tabla existente
+                }
+                const newSize = getTableSize(); // Obtener nuevo tamaño
+                createTable(newSize); // Crea una nueva tabla en blanco
+            });
+            document.body.appendChild(restoreButton);
+        };
+
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = true;
+            } else if (event.key === 'Shift') {
+                isShiftPressed = true;
+            }
+        });
+
+        window.addEventListener('keyup', function(event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = false;
+            } else if (event.key === 'Shift') {
+                isShiftPressed = false;
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

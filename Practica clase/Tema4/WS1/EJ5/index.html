@@ -30,13 +30,11 @@
                 const row = document.createElement('tr');
                 for (let j = 0; j < size; j++) {
                     const cell = document.createElement('td');
-                    cell.addEventListener('mousemove', function(event) {
-                        if (event.buttons === 1) {
-                            if (isCtrlPressed) {
-                                cell.style.backgroundColor = 'red';
-                            } else if (isShiftPressed) {
-                                cell.style.backgroundColor = 'blue';
-                            }
+                    cell.addEventListener('mousemove', function() {
+                        if (isCtrlPressed) {
+                            cell.style.backgroundColor = 'red';
+                        } else if (isShiftPressed) {
+                            cell.style.backgroundColor = 'blue';
                         }
                     });
                     cell.addEventListener('contextmenu', function(event) {

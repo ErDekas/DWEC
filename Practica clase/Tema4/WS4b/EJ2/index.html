@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <div class="calc">
+      <input type="text" id="display" name="ans" />
+      <br />
+      <button onClick="resetDiv()">C</button>
+      <button onClick="borrarUltimoCaracter()">&larr;</button>
+      <button onClick="realizarCalculoPercent('%')">%</button>
+      <button onClick="realizarCalculo('/')">/</button>
+      <br />
+      <button onClick="agregarCaracter('7')">7</button>
+      <button onClick="agregarCaracter('8')">8</button>
+      <button onClick="agregarCaracter('9')">9</button>
+      <button onClick="realizarCalculo('*')">X</button>
+      <br />
+      <button onClick="agregarCaracter('4')">4</button>
+      <button onClick="agregarCaracter('5')">5</button>
+      <button onClick="agregarCaracter('6')">6</button>
+      <button onClick="realizarCalculo('-')">-</button>
+      <br />
+      <button onClick="agregarCaracter('1')">1</button>
+      <button onClick="agregarCaracter('2')">2</button>
+      <button onClick="agregarCaracter('3')">3</button>
+      <button onClick="realizarCalculo('+')">+</button>
+      <br />
+      <button onClick="agregarCaracter('0')">0</button>
+      <button onClick="agregarCaracter('.')">.</button>
+      <button onClick="realizarCalculo('=')" class="igual">=</button>
+    </div>
+  </body>
+</html>

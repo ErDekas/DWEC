@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #2c3e50; /* Fondo oscuro */
+  color: #ecf0f1; /* Texto claro */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  background-color: #2980b9;
+  position: relative;
+}
+
+/* Ocultar los botones de radio */
+input[type="radio"] {
+  display: none; /* Ocultar el botón de radio por defecto */
+}
+
+/* Estilos para las etiquetas de los botones de radio */
+label {
+  cursor: pointer;
+  margin: 0 15px;
+  font-size: 18px;
+  position: relative;
+}
+
+/* Estilos para el círculo del botón de radio */
+label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ecf0f1; /* Borde claro */
+  border-radius: 50%; /* Forma circular */
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  transition: background-color 0.2s; /* Transición suave */
+}
+
+/* Estilos cuando el radio está seleccionado */
+input[type="radio"]:checked + label::before {
+  background-color: #ecf0f1; /* Color de fondo al seleccionar */
+  border-color: #ecf0f1; /* Color del borde al seleccionar */
+}
+
+/* Cambiar el color del texto de la etiqueta cuando está seleccionada */
+input[type="radio"]:checked + label {
+  color: #3498db; /* Cambiar el color del texto a un azul claro */
+}
+
+/* Estilo del display del color RGB */
+#rgbDisplay {
+  font-size: 24px;
+  margin: 20px;
+  font-weight: bold;
+}
+
+/* Estilos para el contenedor de colores */
+#colorContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 100px); /* Tres columnas */
+  grid-gap: 15px; /* Espacio entre los colores */
+  margin: 20px auto;
+  justify-content: center;
+}
+
+/* Estilos para las opciones de color */
+.color-option {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  border: 3px solid #ecf0f1; /* Borde claro */
+  border-radius: 25%;
+  transition: transform 0.3s ease; /* Efecto de agrandamiento */
+}
+
+.color-option:hover {
+  transform: scale(1.1); /* Aumentar el tamaño al pasar el mouse */
+}
+
+/* Estilos para el mensaje */
+#message {
+  font-size: 1.2em;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Estilos para el botón */
+button {
+  background-color: #2980b9;
+  color: #ecf0f1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3498db; /* Color al pasar el mouse */
+}
+
+/* Estilos para elementos ocultos */
+.hidden {
+  opacity: 0;
+  pointer-events: none; /* Evitar interacciones */
+  transition: opacity 0.5s ease; /* Desvanecimiento suave */
+}

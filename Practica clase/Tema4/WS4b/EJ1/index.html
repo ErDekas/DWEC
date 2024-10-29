@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de Adivinanza de Color</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>¡Adivina el Color!</h1>
+    <div>
+      <input type="radio" id="easy" name="mode" value="easy" />
+      <label for="easy">Fácil (3 colores)</label>
+
+      <input type="radio" id="hard" name="mode" value="hard" checked />
+      <label for="hard">Difícil (6 colores)</label>
+    </div>
+    <div id="rgbDisplay">RGB(?, ?, ?)</div>
+    <div id="colorContainer"></div>
+    <p id="message"></p>
+    <button onclick="resetGame()">Reiniciar Juego</button>
+
+    <script src="index.js"></script>
+  </body>
+</html>

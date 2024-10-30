@@ -1,42 +1,60 @@
 function borrarUltimoCaracter() {
-  var display = document.getElementById("display");
-  var valorActual = display.value;
+  const display = document.getElementById("display");
+  const valorActual = display.value;
   if (valorActual.length > 0) {
     // Elimina el último carácter del valor actual del campo de entrada
     display.value = valorActual.slice(0, -1);
   }
 }
+
 function agregarCaracter(caracter) {
-  var display = document.getElementById("display");
-  display.value += caracter;
+  const display = document.getElementById("display");
+  // Evita añadir caracteres no válidos en la pantalla
+  if (/^[0-9+\-*/.%()]*$/.test(caracter)) {
+    display.value += caracter;
+  } else {
+    console.warn("Caracter no válido");
+  }
 }
+
 function realizarCalculo(operador) {
-  var display = document.getElementById("display");
+  const display = document.getElementById("display");
   try {
     if (operador === "=") {
-      // Evalúa la expresión y guarda el resultado
-      var resultado = eval(display.value);
-      // Verifica si el resultado es NaN
-      if (isNaN(resultado)) {
-        display.value = ""; // Borra completamente el display si es NaN
+      // Evalúa solo si la expresión es válida
+      if (/^[0-9+\-*/.%() ]+$/.test(display.value)) {
+        const resultado = eval(display.value);
+
+        // Verifica si el resultado es NaN o infinito
+        if (isNaN(resultado) || !isFinite(resultado)) {
+          display.value = "Error";
+        } else {
+          display.value = resultado;
+        }
       } else {
-        display.value = resultado; // Muestra el resultado
+        display.value = "Error";
       }
-    } else {
-      display.value += operador; // Agrega el operador
+    } else if (/^[+\-*/%]$/.test(operador)) {
+      // Solo permite operadores válidos
+      display.value += operador;
     }
   } catch (error) {
     display.value = "Error"; // Muestra "Error" en caso de excepción
+    console.error("Error en la evaluación: ", error);
   }
 }
-function realizarCalculoPercent() {
-  var display = document.getElementById("display");
-  if (!isNaN(display.value)) {
-    display.value = parseFloat(display.value) / 100;
-  }
-}
-function resetDiv() {
-  var display = document.getElementById("display");
 
+function realizarCalculoPercent() {
+  const display = document.getElementById("display");
+  // Convierte a porcentaje solo si el valor es numérico
+  if (!isNaN(display.value) && display.value !== "") {
+    display.value = parseFloat(display.value) / 100;
+  } else {
+    display.value = "Error";
+  }
+}
+
+function resetDiv() {
+  const display = document.getElementById("display");
   display.value = "";
 }

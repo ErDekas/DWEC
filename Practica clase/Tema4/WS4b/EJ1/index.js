@@ -64,5 +64,11 @@ function resetGame() {
   initGame();
 }
 
+document.addEventListener("keydown", (event)=>{
+  if(event.key === "r" || event.key === "R"){
+    resetGame();
+  }
+})
+
 // Iniciar el juego la primera vez
 initGame();

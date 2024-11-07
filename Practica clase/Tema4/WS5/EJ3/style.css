@@ -1,0 +1,87 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f28b82; /* Color de fondo coral */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    background: transparent;
+    color: #ffe8e8; /* Color claro para el texto */
+}
+
+input[type="text"] {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #d4d79f; /* Línea inferior clara */
+    background-color: transparent;
+    color: #ffe8e8;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+input[type="text"]::placeholder {
+    color: #ffe8e8;
+    opacity: 0.7;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: justify;
+    color: #d4d79f; /* Texto claro */
+}
+
+li.validates {
+    font-size: 17px;
+    color: #d4d79f;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+li.validates:before {
+    content: "•";
+    color: #d4d79f;
+    opacity: 0.7;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    padding: 10px 0;
+    width: 100px;
+    border: none;
+    background-color: #ffcdc1; /* Botón claro */
+    color: #f28b82;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.8;
+}

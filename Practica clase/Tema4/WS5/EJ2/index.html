@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de formularios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="" method="post" id="form">
+        <div class="form">
+            <h1>Registro</h1>
+            
+            <div class="grupo">
+                <input type="text" name="name" id="name" required>
+                <span class="barra"></span>
+                <label for="name">Nombre</label>
+                <span class="validation-message" id="name-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="text" name="apellido" id="apellidos" required>
+                <span class="barra"></span>
+                <label for="apellidos">Apellidos</label>
+                <span class="validation-message" id="apellidos-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="text" name="DNI" id="DNI" required>
+                <span class="barra"></span>
+                <label for="DNI">DNI</label>
+                <span class="validation-message" id="DNI-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="text" name="telefono" id="telefono" required>
+                <span class="barra"></span>
+                <label for="telefono">Teléfono</label>
+                <span class="validation-message" id="telefono-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="email" name="email" id="email" required>
+                <span class="barra"></span>
+                <label for="email">Email</label>
+                <span class="validation-message" id="email-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="text" name="usuario" id="usuario" required>
+                <span class="barra"></span>
+                <label for="usuario">Usuario</label>
+                <span class="validation-message" id="usuario-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="password" name="password" id="password" required>
+                <span class="barra"></span>
+                <label for="password">Password</label>
+                <span class="validation-message" id="password-validation"></span>
+            </div>
+            
+            <div class="grupo">
+                <input type="password" name="Rpassword" id="Rpassword" required>
+                <span class="barra"></span>
+                <label for="Rpassword">Repetir password</label>
+                <span class="validation-message" id="Rpassword-validation"></span>
+            </div>
+            
+            <button type="submit">Validar</button>
+            <p class="warnings" id="warnings"></p>
+        </div>
+        <script src="index.js"></script>
+    </form>
+</body>
+</html>

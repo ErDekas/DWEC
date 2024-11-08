@@ -34,6 +34,7 @@ body {
   perspective: 1000px; /* Necesario para la rotación 3D */
 }
 
+/* Definimos el frente y el reverso de la tarjeta */
 .credit-card .front,
 .credit-card .back {
   position: absolute;
@@ -50,7 +51,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 15px;
-  z-index: 2;
+  z-index: 2; /* El frente siempre visible */
 }
 
 .credit-card .back {
@@ -62,22 +63,26 @@ body {
   font-size: 1.2em;
   transform: rotateY(180deg);
   background-color: #1a1f71;
-  z-index: 1;
+  z-index: 1; /* El reverso estará oculto por defecto */
+  visibility: hidden; /* Establecemos invisibilidad para el reverso */
 }
 
-.credit-card.flip .front {
-  display: none; /* Oculta el frente al rotar */
-}
-
+/* Aseguramos que el reverso solo sea visible cuando la tarjeta gire */
 .credit-card.flip .back {
-  display: flex; /* Muestra el reverso al rotar */
+  visibility: visible;
 }
 
 /* Estilo para el CVV */
-.display-cvv {
-  margin-top: 30px;
+#discvv {
+  visibility: hidden; /* Ocultamos el campo CVV por defecto */
   font-size: 1.5em;
   color: #f2f2f2;
+  margin-top: 30px;
+  transform: scaleX(-1); /* Invertir el texto */
+}
+
+.credit-card.flip #discvv {
+  visibility: visible; /* Solo mostrar el CVV cuando la tarjeta se gire */
 }
 
 /* Elementos en la tarjeta */
@@ -126,6 +131,34 @@ select:focus {
   border-color: #1a1f71;
 }
 
+/* Cuando un campo de entrada recibe foco, girar la tarjeta si está en la parte frontal */
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #1a1f71;
+}
+
+input[type="text"]:focus,
+select:focus {
+  /* Se aplica un giro a la tarjeta si está en la parte frontal */
+  .credit-card {
+    transform: rotateY(180deg);
+    transition: transform 0.6s;
+  }
+}
+
+/* Estilo adicional para los elementos girados */
+.credit-card.flip {
+  transform: rotateY(180deg);
+  transition: transform 0.6s;
+}
+
+/* Contenedor de fecha de expiración */
+.expiration-container {
+  display: flex;
+  gap: 10px;
+}
+
 button[type="submit"] {
   padding: 10px;
   font-size: 1em;
@@ -139,16 +172,4 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #0e1555;
-}
-
-/* Contenedor de fecha de expiración */
-.expiration-container {
-  display: flex;
-  gap: 10px;
-}
-
-/* Estilo adicional para los elementos girados */
-.credit-card.flip {
-  transform: rotateY(180deg);
-  transition: transform 0.6s;
 }

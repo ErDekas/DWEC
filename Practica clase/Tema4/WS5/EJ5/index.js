@@ -8,58 +8,63 @@ document.addEventListener("DOMContentLoaded", function () {
   const displayCardNumber = document.querySelector(".card-number");
   const displayCardHolder = document.querySelector(".card-holder");
   const displayExpiryDate = document.querySelector(".expiry-date");
+  const displayCVVInput = document.querySelector(".cvv");
   const creditCard = document.querySelector(".credit-card");
-  const backContainer = creditCard.querySelector(".back");
+
+  // Verificar si el contenedor .back existe
+  let backContainer = creditCard.querySelector(".back");
+
+  // Si no existe, crearlo dinámicamente
+  if (!backContainer) {
+    backContainer = document.createElement("div");
+    backContainer.classList.add("back");
+    creditCard.appendChild(backContainer);
+  }
 
   // Función para formatear el número de tarjeta con espacios cada 4 dígitos
   function formatCardNumber(cardNumber) {
-    return cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ");
+    return cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
   }
 
   // Función para enmascarar el número de tarjeta y agregar espacios
   function maskCardNumber(cardNumber) {
-    // Eliminar cualquier caracter que no sea un número
     cardNumber = cardNumber.replace(/\D/g, "");
 
-    // Enmascarar los números entre los primeros 4 y los últimos 4 dígitos
     let maskedCardNumber = cardNumber
       .split("")
       .map((digit, index) => {
         if (index < 4 || index >= cardNumber.length - 4) {
-          return digit; // Mostrar los primeros 4 y últimos 4 dígitos tal como están
+          return digit;
         }
-        return "*"; // Enmascarar los dígitos intermedios con '*'
+        return "*";
       })
       .join("");
 
-    // Añadir espacios después de cada 4 dígitos o asteriscos
     maskedCardNumber = maskedCardNumber.replace(/(.{4})(?=.)/g, "$1 ");
-
-    // Si el número es menor de 16 caracteres, completarlo con '#'
-    if (maskedCardNumber.length < 19) {
-      maskedCardNumber = maskedCardNumber.padEnd(19, "#");
-    }
-
     return maskedCardNumber;
   }
 
-  // Actualizar el número de tarjeta en tiempo real con separaciones cada 4 dígitos
+  // Actualizar el número de tarjeta en tiempo real con separaciones
   cardNumberInput.addEventListener("input", () => {
-    let cardNumber = cardNumberInput.value;
-    cardNumberInput.value = formatCardNumber(cardNumber); // Se formatea con espacios
+    // Validar que solo se ingresen números
+    cardNumberInput.value = cardNumberInput.value.replace(/\D/g, "");
 
-    // Actualizar la visualización de la tarjeta con el número enmascarado
+    let cardNumber = cardNumberInput.value;
+    cardNumberInput.value = formatCardNumber(cardNumber);
     displayCardNumber.textContent = maskCardNumber(cardNumber);
   });
 
-  // Actualizar el nombre del titular en tiempo real
+  // Actualizar el nombre del titular, validando solo letras
   cardHolderInput.addEventListener("input", () => {
+    // Validar que solo se ingresen letras (y espacios)
+    cardHolderInput.value = cardHolderInput.value.replace(/[^a-zA-Z\s]/g, "");
+
     displayCardHolder.textContent = `Card Holder: ${
       cardHolderInput.value.toUpperCase() || "FULL NAME"
     }`;
   });
 
-  // Actualizar la fecha de expiración en tiempo real
+  // Actualizar la fecha de expiración
   expirationMonthInput.addEventListener("change", updateExpiryDate);
   expirationYearInput.addEventListener("change", updateExpiryDate);
 
@@ -71,32 +76,44 @@ document.addEventListener("DOMContentLoaded", function () {
     displayExpiryDate.textContent = `Expires: ${month}/${year}`;
   }
 
-  cvvInput.addEventListener("focus", () => {
-    creditCard.classList.add("flip"); // Rota la tarjeta
-    displayCardNumber.style.display = "none"; // Ocultar número en el reverso
-    displayExpiryDate.style.display = "none"; // Ocultar fecha de expiración
-    displayCardHolder.style.display = "none"; // Ocultar nombre del titular
-  
-    // Crear y mostrar el CVV en el reverso
-    const displayCVV = document.createElement("div");
-    displayCVV.classList.add("display-cvv");
-    displayCVV.id = "display-cvv";
-    backContainer.appendChild(displayCVV);
-  });
-  
+  // Manejo de interacciones con el CVV
   cvvInput.addEventListener("input", () => {
-    const cvv = cvvInput.value.slice(0, 3);
-    document.getElementById("display-cvv").textContent = cvv; // Actualizar el CVV en tiempo real
+    // Validar que solo se ingresen números en el CVV
+    cvvInput.value = cvvInput.value.replace(/\D/g, "");
+
+    const cvv = cvvInput.value.slice(0, 3); // Limitar a 3 dígitos
+    const displayCVV = document.getElementById("discvv");
+    if (displayCVV) {
+      displayCVV.textContent = `CVV: ${cvv}`;
+    }
   });
-  
+
+  cvvInput.addEventListener("focus", () => {
+    creditCard.classList.add("flip");
+    displayCardNumber.style.display = "none";
+    displayExpiryDate.style.display = "none";
+    displayCardHolder.style.display = "none";
+
+    // Crear y agregar el campo CVV solo cuando se necesita
+    let displayCVV = document.getElementById("display-cvv");
+    if (!displayCVV) {
+      displayCVV = document.createElement("div");
+      displayCVV.classList.add("display-cvv");
+      displayCVV.id = "display-cvv";
+      backContainer.appendChild(displayCVV);
+    }
+  });
+
   cvvInput.addEventListener("blur", () => {
-    creditCard.classList.remove("flip"); // Volver al frente de la tarjeta
-    displayCardNumber.style.display = ""; // Mostrar número nuevamente
-    displayExpiryDate.style.display = ""; // Mostrar fecha de expiración
-    displayCardHolder.style.display = ""; // Mostrar nombre del titular
-  
-    // Remover el CVV del reverso cuando no esté en foco
+    creditCard.classList.remove("flip");
+    displayCardNumber.style.display = "";
+    displayExpiryDate.style.display = "";
+    displayCardHolder.style.display = "";
+
+    // Eliminar el campo CVV cuando ya no sea necesario
     const displayCVV = document.getElementById("display-cvv");
-    if (displayCVV) displayCVV.remove();
-  });  
+    if (displayCVV) {
+      displayCVV.remove();
+    }
+  });
 });

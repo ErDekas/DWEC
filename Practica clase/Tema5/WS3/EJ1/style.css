@@ -1,0 +1,67 @@
+/* Colores */
+:root {
+  --orange: #ffa600;
+  --grey: #f3f3f3;
+  --white: #fff;
+  --base-color: var(--orange);
+}
+
+/* Transición */
+.transition {
+  transition: all 0.5s ease-in-out;
+}
+
+/* Esquinas redondeadas */
+.corners-5px {
+  border-radius: 5px;
+}
+
+/* Estilos generales */
+body {
+  background: var(--base-color);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  height: 100%;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 30px auto;
+  color: var(--white);
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 2.6em;
+  text-transform: uppercase;
+}
+
+#seconds,
+#tens {
+  font-size: 2em;
+}
+
+button {
+  background: var(--base-color);
+  color: var(--white);
+  border: solid 1px var(--white);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 18px 10px;
+  width: 180px;
+  margin: 10px;
+  outline: none;
+  border-radius: 5px; /* Equivale a @include corners(5px); */
+}
+
+button:hover {
+  background: var(--white);
+  border: solid 1px var(--white);
+  color: var(--base-color);
+  transition: all 0.5s ease-in-out; /* Equivale a @include transition; */
+}

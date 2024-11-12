@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #eee;
+  font-family: "Roboto", sans-serif;
+}
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 35rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s linear;
+}
+.section-center:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.alert {
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+  letter-spacing: 3px;
+  text-transform: capitalize;
+}
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+}
+.alert-success {
+  color: #155724;
+  background: #d4edda;
+}
+.grocery-form h3 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.75rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  color: #333;
+}
+.form-control {
+  display: flex;
+  justify-content: center;
+}
+#grocery {
+  padding: 0.25rem;
+  padding-left: 1rem;
+  background: hsl(210, 36%, 96%);
+  border-color: transparent;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: 1rem;
+  flex: 1 0 auto;
+}
+#grocery::placeholder {
+  color: rgb(97, 124, 152);
+}
+.submit-btn {
+  background: rgb(164, 213, 248);
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  padding: 0 1rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  transition: all 0.3s linear;
+}
+.submit-btn:hover {
+  color: #49a6e9;;
+}
+.grocery-container {
+  margin-top: 2rem;
+  transition: all 0.3s linear;
+  visibility: hidden;
+}
+.show-container {
+  visibility: visible;
+}
+.grocery-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s linear;
+  background-repeat: 5px;
+  text-transform: capitalize;
+  padding: 0 1rem;
+}
+.grocery-item:hover {
+  background: hsl(210, 36%, 96%);
+}
+.title {
+  margin-bottom: 0;
+  letter-spacing: 2px;
+  transition: all 0.3s linear;
+}
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  margin: 0 0.15rem;
+  transition: all 0.3s linear;
+}
+.edit-btn {
+  color: green;
+}
+.edit-btn:hover {
+  color: darkgreen;
+}
+.delete-btn {
+  color: red;
+}
+.delete-btn:hover {
+  color: darkred;
+}
+.clear-btn {
+  text-transform: capitalize;
+  width: 10rem;
+  height: 1.5rem;
+  display: grid;
+  align-items: center;
+  background: transparent;
+  border-color: transparent;
+  color: red;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  margin-top: 1.25rem;
+}
+.clear-btn:hover {
+  color: darkred;
+}
+@media (max-width: 500px) {
+  #grocery {
+    width: 80%;
+  }
+}

@@ -5,6 +5,7 @@ let mistakes = 0;
 const maxMistakes = 6;
 let timeRemaining = 60; // Tiempo límite de 1 minuto (60 segundos)
 let timerInterval;
+let gameOver = false; // Variable para verificar si el juego terminó
 
 const wordDisplay = document.getElementById("wordDisplay");
 const lettersContainer = document.getElementById("lettersContainer");
@@ -19,6 +20,7 @@ function startGame() {
   guessedLetters = [];
   mistakes = 0;
   timeRemaining = 60; // Reinicia el tiempo a 60 segundos
+  gameOver = false; // El juego no ha terminado
   message.textContent = "";
 
   // Configura el tablero de letras
@@ -52,7 +54,7 @@ function startTimer() {
 }
 
 function guessLetter(letter) {
-  if (guessedLetters.includes(letter)) return;
+  if (guessedLetters.includes(letter) || gameOver) return; // No permite adivinar si el juego terminó
   guessedLetters.push(letter);
 
   // Selecciona todos los botones y encuentra el que tiene el texto de la letra
@@ -99,7 +101,17 @@ function endGame(messageText) {
   message.textContent = messageText;
   clearInterval(timerInterval); // Detiene el temporizador
   disableAllButtons();
+  gameOver = true; // Marca el juego como terminado
+
+  // Bloquear el uso de teclas excepto Escape
+  document.addEventListener('keydown', function(event) {
+    // Si la tecla presionada no es Escape, evitamos la acción
+    if (event.key !== 'Escape') {
+      event.preventDefault();
+    }
+  });
 }
+
 
 function disableAllButtons() {
   const buttons = lettersContainer.querySelectorAll("button");
@@ -151,8 +163,10 @@ function drawHangman() {
 
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toUpperCase(); // "A", "1", "Enter", "ArrowRight", etc.
-  if (/^[A-Z]$/.test(letter)) {
-    guessLetter(letter);
+  if (!gameOver) {
+    if (/^[A-Z]$/.test(letter)) {
+      guessLetter(letter);
+    }
   } else if (event.key === "Escape") {
     startGame();
   }

@@ -49,6 +49,7 @@ function addBall() {
   });
 }
 
+// Duplica todas las bolas actuales. Crea elementos nuevos en el contenedor y los agrega al array de bolas.
 function duplicateBalls() {
   const currentBalls = [...balls]; // Clonar el array actual para evitar problemas de referencia
 

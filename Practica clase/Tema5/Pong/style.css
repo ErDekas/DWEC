@@ -1,3 +1,4 @@
+/* Mantener los estilos base existentes */
 body {
   margin: 0;
   padding: 0;
@@ -8,6 +9,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  /* Añadir efecto de fondo */
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
 }
 
 .game-container {
@@ -17,6 +20,11 @@ body {
   background: #222;
   overflow: hidden;
   border: 2px solid #fff;
+  /* Añadir efectos 3D */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #1a1a1a, #222);
 }
 
 .scoreboard {
@@ -28,12 +36,16 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  /* Mejorar visibilidad del marcador */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  z-index: 1000;
 }
 
 #ball-container {
   position: absolute;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
 }
 
 .ball {
@@ -42,23 +54,72 @@ body {
   height: 20px;
   background: #fff;
   border-radius: 50%;
+  /* Efectos 3D para la bola */
+  transform-style: preserve-3d;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  background: radial-gradient(circle at 30% 30%, #fff, #ccc);
 }
 
 .paddle {
   position: absolute;
   width: 10px;
   height: 80px;
-  background: #fff;
+  /* Efectos 3D para los paddles */
+  transform-style: preserve-3d;
+  box-shadow: 0 0 20px currentColor;
 }
 
 #paddle1 {
   left: 0;
   top: 160px;
+  background-color: #4444ff;
+  /* Efecto de brillo para paddle1 */
+  box-shadow: 0 0 20px #4444ff;
 }
 
 #paddle2 {
   right: 0;
   top: 160px;
+  background-color: #ff4444;
+  /* Efecto de brillo para paddle2 */
+  box-shadow: 0 0 20px #ff4444;
+}
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  /* Efecto de brillo para partículas */
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Efecto de luz ambiental */
+.game-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 50% 50%, 
+      transparent 0%, 
+      rgba(0, 0, 0, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Efecto de resplandor para los elementos en movimiento */
+@keyframes glow {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+  100% { filter: brightness(1); }
+}
+
+.ball:active {
+  animation: glow 0.5s ease-in-out infinite;
 }
 
 select {
@@ -67,4 +128,11 @@ select {
   border: 1px solid #fff;
   padding: 5px;
   font-size: 16px;
+  /* Mejorar apariencia del select */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+select:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }

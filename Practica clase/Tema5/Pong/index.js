@@ -17,6 +17,12 @@ let particles = [];
 let player1Score = 0;
 let player2Score = 0;
 
+// Variables para el control de velocidad
+const SPEED_INCREASE_INTERVAL = 5000; // 5 segundos
+const SPEED_INCREASE_FACTOR = 1.2; // Aumentará un 20% cada vez
+const INITIAL_BALL_SPEED = 4;
+let speedIncreaseTimer = null;
+
 // Clase Partícula
 class Particle {
     constructor(x, y, color) {
@@ -26,7 +32,7 @@ class Particle {
         this.size = Math.random() * 3 + 2;
         this.speedX = (Math.random() - 0.5) * 8;
         this.speedY = (Math.random() - 0.5) * 8;
-        this.life = 1; // Valor de opacidad, se irá reduciendo
+        this.life = 1;
         this.element = document.createElement('div');
         this.element.className = 'particle';
         this.element.style.position = 'absolute';
@@ -41,7 +47,7 @@ class Particle {
         this.life -= 0.02;
         this.x += this.speedX;
         this.y += this.speedY;
-        this.speedY += 0.1; // Gravedad
+        this.speedY += 0.1;
         this.element.style.left = this.x + 'px';
         this.element.style.top = this.y + 'px';
         this.element.style.opacity = this.life;
@@ -52,9 +58,23 @@ class Particle {
     }
 }
 
+// Función para iniciar el temporizador de aumento de velocidad
+function startSpeedIncreaseTimer() {
+    if (speedIncreaseTimer) {
+        clearInterval(speedIncreaseTimer);
+    }
+    
+    speedIncreaseTimer = setInterval(() => {
+        balls.forEach(ball => {
+            ball.speedX *= SPEED_INCREASE_FACTOR;
+            ball.speedY *= SPEED_INCREASE_FACTOR;
+        });
+    }, SPEED_INCREASE_INTERVAL);
+}
+
 // Crear explosión de partículas
 function createExplosion(x, y, isLeftSide) {
-    const color = isLeftSide ? '#ff4444' : '#4444ff'; // Rojo para lado izquierdo, azul para derecho
+    const color = isLeftSide ? '#ff4444' : '#4444ff';
     const particleCount = 30;
     
     for (let i = 0; i < particleCount; i++) {
@@ -90,9 +110,12 @@ function addBall() {
         elem: ballElem,
         x: 390,
         y: Math.random() * 380,
-        speedX: (Math.random() > 0.5 ? 1 : -1) * 4,
-        speedY: (Math.random() > 0.5 ? 1 : -1) * 4,
+        speedX: (Math.random() > 0.5 ? 1 : -1) * INITIAL_BALL_SPEED,
+        speedY: (Math.random() > 0.5 ? 1 : -1) * INITIAL_BALL_SPEED,
     });
+
+    // Iniciar el temporizador de aumento de velocidad para la nueva bola
+    startSpeedIncreaseTimer();
 }
 
 function duplicateBalls() {
@@ -109,10 +132,25 @@ function duplicateBalls() {
             elem: ballElem,
             x: ball.x,
             y: ball.y,
-            speedX: (Math.random() > 0.5 ? 1 : -1) * 4,
-            speedY: (Math.random() > 0.5 ? 1 : -1) * 4,
+            speedX: (Math.random() > 0.5 ? 1 : -1) * INITIAL_BALL_SPEED,
+            speedY: (Math.random() > 0.5 ? 1 : -1) * INITIAL_BALL_SPEED,
         });
     });
+
+    // Reiniciar el temporizador cuando se duplican las bolas
+    startSpeedIncreaseTimer();
+}
+
+function resetBall(ball) {
+    ball.x = 390;
+    ball.y = 190;
+    // Restablecer la velocidad inicial
+    const direction = Math.random() > 0.5 ? 1 : -1;
+    ball.speedX = direction * INITIAL_BALL_SPEED;
+    ball.speedY = (Math.random() > 0.5 ? 1 : -1) * INITIAL_BALL_SPEED;
+    
+    // Reiniciar el temporizador de aumento de velocidad
+    startSpeedIncreaseTimer();
 }
 
 function updateScore() {
@@ -120,12 +158,10 @@ function updateScore() {
     player2ScoreElem.textContent = player2Score;
 }
 
-// Actualizar partículas
 function updateParticles() {
     for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update();
         
-        // Eliminar partículas muertas
         if (particles[i].life <= 0) {
             particles[i].remove();
             particles.splice(i, 1);
@@ -177,7 +213,6 @@ function update() {
         ball.elem.style.top = ball.y + "px";
     });
 
-    // Actualizar partículas
     updateParticles();
 
     paddle1Y += paddle1Direction * paddleSpeed;
@@ -198,12 +233,6 @@ function update() {
     requestAnimationFrame(update);
 }
 
-function resetBall(ball) {
-    ball.x = 390;
-    ball.y = 190;
-    ball.speedX *= -1;
-}
-
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
         addBall();
@@ -212,7 +241,6 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-// Agregar estilos CSS necesarios
 const style = document.createElement('style');
 style.textContent = `
     .particle {

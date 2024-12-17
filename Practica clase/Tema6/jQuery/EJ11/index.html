@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tooltip con jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .tooltip {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+
+      .hot {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Tooltip con jQuery</h2>
+    <p>
+      Pasa el ratón sobre las siguientes palabras:
+      <span class="hot" data-tip="Una herramienta poderosa.">jQuery</span> y
+      <span class="hot" data-tip="Un lenguaje de programación.">JavaScript</span
+      >.
+    </p>
+    <div class="tooltip"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

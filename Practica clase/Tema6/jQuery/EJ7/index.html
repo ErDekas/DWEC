@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animaciones con jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #miDiv {
+      width: 100px;
+      height: 100px;
+      background-color: #3498db;
+      margin: 20px auto;
+      transition: all 0.3s ease;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Animaciones con dos botones</h2>
+  
+  <!-- Botones para controlar las animaciones -->
+  <button id="botonAnimar">Iniciar Animaciones</button>
+  <button id="botonDetener">Detener Animaciones</button>
+  
+  <!-- Div a animar -->
+  <div id="miDiv"></div>
+
+  <script src="index.js"></script>
+
+</body>
+</html>

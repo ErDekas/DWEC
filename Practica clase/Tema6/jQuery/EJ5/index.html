@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambiar color al hacer clic</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #miDiv {
+        border: 2px solid black;
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      p {
+        font-size: 18px;
+        cursor: pointer;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Cambiar color según el párrafo</h2>
+    <div id="miDiv">
+      <p id="parrafo1">Párrafo 1: Haz clic aquí para un color.</p>
+      <p id="parrafo2">Párrafo 2: Haz clic aquí para otro color.</p>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
